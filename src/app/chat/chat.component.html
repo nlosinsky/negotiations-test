@@ -1,0 +1,14 @@
+<div class="chat">
+	<div class="chat__header">&lt; Message to &gt;</div>
+	<div class="chat__body">
+		<!--added sync pipe as it's observable pipe of data, skipExpired to filter expired messages-->
+		<div *ngFor="let item of messages$ | async | skipExpired:'expiration'" class="chat__message">
+			<div *ngIf="isBase64(item.message)">
+				<img [src]="item.message" alt="">
+			</div>
+			<div *ngIf="!isBase64(item.message)">
+				<span  class="chat__text bg-primary">{{item.message}}</span>
+			</div>
+		</div>
+	</div>
+</div>
